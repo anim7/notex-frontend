@@ -3,9 +3,9 @@ import React from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import Notes from "./components/notes/Notes";
-import Todo from "./components/Todo";
+import Todo from "./components/todo/Todo";
 import CreateNote from "./components/notes/CreateNote";
 import Note from "./components/notes/Note";
 
