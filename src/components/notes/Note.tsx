@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/notes_styles/Note.css";
+import "./styles/Note.css";
 
 interface Note1 {
   id: number;
