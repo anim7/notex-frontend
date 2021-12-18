@@ -4,10 +4,10 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Notes from "./components/Notes";
+import Notes from "./components/notes/Notes";
 import Todo from "./components/Todo";
-import CreateNote from "./components/CreateNote";
-import Note from "./components/Note";
+import CreateNote from "./components/notes/CreateNote";
+import Note from "./components/notes/Note";
 
 const { useState } = React;
 

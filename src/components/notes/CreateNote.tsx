@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./styles/CreateNote.css";
+import "./styles/notes_styles/CreateNote.css";
 
 const { useState } = React;
 

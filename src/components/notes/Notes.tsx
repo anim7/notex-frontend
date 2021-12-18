@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Notes.css";
+import "./styles/notes_styles/Notes.css";
 import { Link } from "react-router-dom";
 
 const { useState, useEffect } = React;
