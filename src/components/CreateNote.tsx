@@ -29,6 +29,7 @@ const CreateNote: React.FC<Props> = ({
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
   const [constructorHasRun, setConstructorHasRun] = useState<boolean>(false);
+  const [eraseKeyPressed, setErasedKeyPressed] = useState<boolean>(false);
   const getInfo = () => {
     if (clickedOnNote && notes) {
       setTitle(notes[0].title);
@@ -53,8 +54,19 @@ const CreateNote: React.FC<Props> = ({
         className="title"
         id="title"
         value={title}
+        onKeyDown={(e) => {
+          if (e.code === "Backspace" || e.code === "Delete") {
+            setErasedKeyPressed(true);
+          } else {
+            setErasedKeyPressed(false);
+          }
+        }}
         onChange={(ev) => {
-          setTitle(ev.target.value);
+          if (title.length >= 255 && !eraseKeyPressed) {
+            alert("cannot add more characters");
+          } else {
+            setTitle(ev.target.value);
+          }
         }}
         style={{
           backgroundColor: mode === "light" ? "white" : "rgb(41, 41, 41)",
@@ -69,8 +81,19 @@ const CreateNote: React.FC<Props> = ({
         rows={22}
         className="textarea"
         value={text}
+        onKeyDown={(e) => {
+          if (e.code === "Backspace" || e.code === "Delete") {
+            setErasedKeyPressed(true);
+          } else {
+            setErasedKeyPressed(false);
+          }
+        }}
         onChange={(ev) => {
-          setText(ev.target.value);
+          if (text.length >= 255 && !eraseKeyPressed) {
+            alert("cannot add more characters");
+          } else {
+            setText(ev.target.value);
+          }
         }}
         style={{
           backgroundColor: mode === "light" ? "white" : "rgb(41, 41, 41)",

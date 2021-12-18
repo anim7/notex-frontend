@@ -61,9 +61,7 @@ const App: React.FC = () => {
   };
 
   const addNote = (note: NoteToPost) => {
-    axios
-      .post(`${url}/api/notes`, note)
-      .then((res: AxiosResponse) => setNotes(res.data));
+    axios.post(`${url}/api/notes`, note);
   };
 
   const updateNote = (note: NoteToPost) => {
@@ -88,6 +86,7 @@ const App: React.FC = () => {
               notes={notes}
               fetchNotes={fetchNotes}
               setClickedNoteId={setClickedNoteId}
+              deleteNote={deleteNote}
             />
           }
         />
@@ -95,7 +94,14 @@ const App: React.FC = () => {
         <Route
           path="/notes/create"
           element={
-            <CreateNote mode={mode} addNote={addNote} clickedOnNote={false} />
+            <CreateNote
+              mode={mode}
+              addNote={addNote}
+              clickedOnNote={false}
+              clickedNoteId={clickedNoteId}
+              notes={notes}
+              updateNote={updateNote}
+            />
           }
         />
         <Route

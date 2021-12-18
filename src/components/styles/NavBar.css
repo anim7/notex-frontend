@@ -1,5 +1,6 @@
 .nav-container {
   position: sticky;
+  top: 0;
   display: flex;
   background-color: rgb(209, 204, 187);
   flex-flow: row wrap;

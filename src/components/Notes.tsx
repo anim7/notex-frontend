@@ -15,6 +15,7 @@ interface Props {
   notes: Note[] | null | undefined;
   fetchNotes: (id?: number) => void;
   setClickedNoteId: (id: number) => void;
+  deleteNote: (id?: number) => void;
 }
 
 const Notes: React.FC<Props> = ({
@@ -22,6 +23,7 @@ const Notes: React.FC<Props> = ({
   notes,
   fetchNotes,
   setClickedNoteId,
+  deleteNote,
 }) => {
   const [constructorHasBeenCalled, setConstructorHasBeenCalled] =
     useState<boolean>(false);
@@ -49,7 +51,14 @@ const Notes: React.FC<Props> = ({
       <Link to="create" className="btn">
         Create New
       </Link>
-      <Link to="/notes" className="btn">
+      <Link
+        to="/notes"
+        className="btn"
+        onClick={() => {
+          deleteNote();
+          setConstructorHasBeenCalled(false);
+        }}
+      >
         Delete All
       </Link>
       {notes && (
