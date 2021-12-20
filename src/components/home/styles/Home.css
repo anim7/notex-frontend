@@ -1,6 +1,73 @@
 .home-container {
   display: flex;
   width: 100%;
-  background-color: green;
+  background-color: #d8dbb0;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 17rem;
+}
+
+.home-links {
+  display: flex;
+  margin-top: 2rem;
+  width: 25%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-link {
+  border: 0.15rem solid darkblue;
+  border-radius: 0.3rem;
+  text-decoration: none;
+  color: black;
+  background-color: #007bff;
+  padding: 0.3rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.app-link:hover {
+  border-color: #007bff;
+  color: cyan;
+  background-color: darkblue;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 4rem auto;
+  align-items: center;
+  justify-content: center;
+  border: 0.05rem solid black;
+  border-radius: 0.3rem;
+  background-color: lightskyblue;
+}
+
+.about h2 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+}
+
+.about button {
+  font-size: 1.7rem;
+  width: 100%;
+  background-color: lightgreen;
+  border: 0.15rem solid black;
+  cursor: pointer;
+}
+
+.about-text {
+  font-size: 1.3rem;
+  background-color: lightgreen;
+  width: 99.5%;
+  text-align: center;
+  border: 0.15rem solid black;
+  border-top: none;
+  padding: 1rem 0;
 }
