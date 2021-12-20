@@ -1,0 +1,68 @@
+.todo {
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0.15rem solid black;
+  margin: 0.1rem 0rem;
+  cursor: pointer;
+}
+
+.todo:hover {
+  text-decoration: underline;
+}
+
+.todo:hover + .todoitem-btns-container,
+.todoitem-btns-container:hover {
+  display: flex;
+}
+
+.todo h3 {
+  margin: 0;
+  padding: 0;
+  margin-left: 2rem;
+}
+
+.check-box {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.todoitem-btns-container {
+  display: none;
+  position: absolute;
+  right: 1.25rem;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.45rem 1rem;
+}
+
+.del-btn {
+  right: 6rem;
+}
+
+.edit-btn {
+  right: 3rem;
+}
+
+.todoitem-btns {
+  border: 0.15rem solid darkblue;
+  border-radius: 0.3rem;
+  background-color: #007bff;
+  text-decoration: none;
+  color: white;
+  font-size: 1.4rem;
+  padding: 0.1rem;
+  margin: 0.5rem 0rem;
+  margin: 0rem 0.2rem;
+}
+
+.todoitem-btns:hover {
+  border-color: #007bff;
+  color: cyan;
+  background-color: darkblue;
+  display: inline-block;
+}

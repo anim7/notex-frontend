@@ -59,7 +59,7 @@ const Notes: React.FC<Props> = ({
           setConstructorHasBeenCalled(false);
         }}
       >
-        Delete All
+        Clear
       </Link>
       {notes && (
         <div className="notes">
@@ -89,7 +89,7 @@ const Notes: React.FC<Props> = ({
           })}
         </div>
       )}
-      {notes === null && (
+      {(!notes || notes.length === 0) && (
         <div>
           <h1>No Notes are availbale</h1>
         </div>

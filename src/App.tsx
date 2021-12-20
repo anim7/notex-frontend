@@ -8,6 +8,7 @@ import Notes from "./components/notes/Notes";
 import Todo from "./components/todo/Todo";
 import CreateNote from "./components/notes/CreateNote";
 import Note from "./components/notes/Note";
+import CreateTodo from "./components/todo/CreateTodo";
 
 const { useState } = React;
 
@@ -17,15 +18,31 @@ const App: React.FC = () => {
     title: string;
     text: string;
   }
+
   interface NoteToPost {
     title: string;
     text: string;
   }
+
+  interface Todo {
+    id: number;
+    todo: string;
+    done: boolean;
+  }
+
+  interface TodoToPost {
+    todo: string;
+    done: boolean;
+  }
+
   const [notes, setNotes] = useState<Note[] | null>();
   const url = "http://localhost:8080";
   const [mode, setMode] = useState<"light" | "dark">("light");
   const [checked, setChecked] = useState<boolean>(false);
   const [clickedNoteId, setClickedNoteId] = useState<number>(0);
+  const [todoList, setTodoList] = useState<Todo[] | null>(null);
+  const [clickedTodoId, setClickedTodoId] = useState<number>(0);
+
   const toggleMode = () => {
     if (!checked) {
       setMode("dark");
@@ -36,6 +53,7 @@ const App: React.FC = () => {
     }
   };
 
+  //notes functions start
   const fetchNotes = async (id?: number) => {
     let idParam: string = "";
     if (id) {
@@ -47,7 +65,6 @@ const App: React.FC = () => {
         setNotes(res.data);
       })
       .catch((err: AxiosError) => {
-        console.error(err);
         setNotes(null);
       });
   };
@@ -67,6 +84,40 @@ const App: React.FC = () => {
   const updateNote = (note: NoteToPost) => {
     axios.put(`${url}/api/notes`, note);
   };
+  //notes functions end
+
+  //todo functions start
+  const getTodo = (id?: number) => {
+    let idParam = "";
+    if (id) {
+      idParam = `?id=${id}`;
+    }
+    axios
+      .get(`${url}/api/todo${idParam}`)
+      .then((res: AxiosResponse) => {
+        setTodoList(res.data);
+      })
+      .catch((err: AxiosError) => {
+        setTodoList(null);
+      });
+  };
+
+  const addTodo = (todo: TodoToPost) => {
+    axios.post(`${url}/api/todo`, todo);
+  };
+
+  const deleteTodo = (id?: number) => {
+    let idParam = "";
+    if (id) {
+      idParam = `?id=${id}`;
+    }
+    axios.delete(`${url}/api/todo${idParam}`);
+  };
+
+  const updateTodo = (todo: TodoToPost) => {
+    axios.put(`${url}/api/todo`, todo);
+  };
+  //todo functions end
 
   return (
     <>
@@ -90,7 +141,19 @@ const App: React.FC = () => {
             />
           }
         />
-        <Route path="/todo" element={<Todo mode={mode} />} />
+        <Route
+          path="/todo"
+          element={
+            <Todo
+              mode={mode}
+              todoList={todoList}
+              getTodo={getTodo}
+              deleteTodo={deleteTodo}
+              updateTodo={updateTodo}
+              setClickedTodoId={setClickedTodoId}
+            />
+          }
+        />
         <Route
           path="/notes/create"
           element={
@@ -125,6 +188,34 @@ const App: React.FC = () => {
               clickedOnNote={true}
               notes={notes}
               updateNote={updateNote}
+            />
+          }
+        />
+        <Route
+          path="/todo/create"
+          element={
+            <CreateTodo
+              mode={mode}
+              addTodo={addTodo}
+              clickedTodo={false}
+              clickedTodoId={clickedTodoId}
+              updateTodo={updateTodo}
+              getTodo={getTodo}
+              todos={todoList}
+            />
+          }
+        />
+        <Route
+          path={`/todo/edit/${clickedTodoId}`}
+          element={
+            <CreateTodo
+              mode={mode}
+              addTodo={addTodo}
+              clickedTodo={true}
+              clickedTodoId={clickedTodoId}
+              updateTodo={updateTodo}
+              getTodo={getTodo}
+              todos={todoList}
             />
           }
         />
